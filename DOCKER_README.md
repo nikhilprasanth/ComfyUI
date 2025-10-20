@@ -27,7 +27,29 @@ This Docker implementation is based on the ComfyUI portable version, designed fo
 
 ## Quick Start
 
-### Option 1: Using Docker Compose (Recommended)
+### Option 1: Using Makefile (Easiest)
+
+If you have `make` installed:
+
+```bash
+# View all available commands
+make help
+
+# Build and start ComfyUI
+make build
+make up
+
+# View logs
+make logs
+
+# Open shell in container
+make shell
+
+# Stop ComfyUI
+make down
+```
+
+### Option 2: Using Docker Compose (Recommended)
 
 1. Clone the repository or copy the Docker files:
 ```bash
@@ -35,35 +57,41 @@ git clone https://github.com/yourusername/ComfyUI.git
 cd ComfyUI
 ```
 
-2. Create directories for your models, input, and output:
+2. (Optional) Copy and customize the environment file:
+```bash
+cp .env.example .env
+# Edit .env with your preferred settings
+```
+
+3. Create directories for your models, input, and output:
 ```bash
 mkdir -p models/checkpoints models/vae models/loras input output
 ```
 
-3. Place your models in the appropriate directories:
+4. Place your models in the appropriate directories:
    - Checkpoints: `./models/checkpoints/`
    - VAE models: `./models/vae/`
    - LoRA models: `./models/loras/`
    - Input images: `./input/`
 
-4. Start ComfyUI:
+5. Start ComfyUI:
 ```bash
 docker-compose up -d
 ```
 
-5. Access ComfyUI at: http://localhost:8188
+6. Access ComfyUI at: http://localhost:8188
 
-6. View logs:
+7. View logs:
 ```bash
 docker-compose logs -f
 ```
 
-7. Stop ComfyUI:
+8. Stop ComfyUI:
 ```bash
 docker-compose down
 ```
 
-### Option 2: Using Docker Run
+### Option 3: Using Docker Run
 
 Build the image:
 ```bash
