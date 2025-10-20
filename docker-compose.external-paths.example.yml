@@ -1,0 +1,25 @@
+version: '3.8'
+
+# Example docker-compose configuration for external model paths
+# This is ideal for sharing models between multiple ComfyUI instances or other UIs
+# Copy this file to docker-compose.override.yml and modify the paths
+
+services:
+  comfyui:
+    environment:
+      # Configure external model paths
+      - COMFYUI_MODELS_PATH=/data/models
+      - COMFYUI_INPUT_PATH=/data/input
+      - COMFYUI_OUTPUT_PATH=/data/output
+    
+    volumes:
+      # Example: Mount models from D:\AI\models on Windows WSL2
+      # Adjust these paths to match your system
+      - /mnt/d/AI/models:/data/models
+      - /mnt/d/AI/input:/data/input
+      - /mnt/d/AI/output:/data/output
+      
+      # For Linux/Mac, use absolute paths like:
+      # - /home/user/AI/models:/data/models
+      # - /home/user/AI/input:/data/input
+      # - /home/user/AI/output:/data/output
