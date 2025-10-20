@@ -13,6 +13,10 @@ This Docker implementation is based on the ComfyUI portable version, designed fo
 ## Prerequisites
 
 ### Windows (WSL2)
+
+**For detailed Windows WSL2 setup instructions, see [DOCKER_SETUP_WSL2.md](DOCKER_SETUP_WSL2.md).**
+
+Quick checklist:
 1. Install [Docker Desktop for Windows](https://www.docker.com/products/docker-desktop/)
 2. Enable WSL2 integration in Docker Desktop settings
 3. Install [NVIDIA Container Toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html) for GPU support
