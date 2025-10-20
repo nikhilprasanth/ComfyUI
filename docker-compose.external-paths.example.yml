@@ -1,5 +1,3 @@
-version: '3.8'
-
 # Example docker-compose configuration for external model paths
 # This is ideal for sharing models between multiple ComfyUI instances or other UIs
 # Copy this file to docker-compose.override.yml and modify the paths
