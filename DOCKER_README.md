@@ -9,6 +9,23 @@ This Docker implementation is based on the ComfyUI portable version, designed fo
 - 🚀 **CUDA 12.8**: Pre-configured with CUDA 12.8 for optimal GPU performance
 - 🔧 **Flexible Configuration**: Everything else is stored in the container for simplicity
 - 📦 **WSL2 Optimized**: Perfect for Windows users running Docker through WSL2
+- 🔒 **Offline Runtime**: Once built, runs completely offline with no internet dependencies
+
+## Internet Requirements
+
+**Building the Image:**
+- ✅ Internet required for first-time build to download base image and dependencies
+- ✅ After building, image is self-contained and portable
+
+**Running the Container:**
+- ✅ **No internet required** - runs completely offline
+- ✅ All dependencies bundled in the image
+- ✅ ComfyUI core never downloads anything unless you explicitly use API nodes
+
+**Portability:**
+- ✅ Save image: `docker save comfyui:latest | gzip > comfyui-image.tar.gz`
+- ✅ Load on another PC: `docker load < comfyui-image.tar.gz`
+- ✅ No internet needed on the destination machine to run
 
 ## Prerequisites
 
@@ -275,6 +292,54 @@ For large models, you might need to increase shared memory:
 
 ```yaml
 shm_size: '16gb'
+```
+
+## Offline Usage & Image Portability
+
+### Saving the Image for Offline Use
+
+Once built, the Docker image is completely self-contained with all dependencies. You can save it and transfer to another machine:
+
+```bash
+# Save the image to a compressed file
+docker save comfyui:latest | gzip > comfyui-image.tar.gz
+
+# The file can be quite large (several GB) but contains everything needed
+```
+
+### Loading on Another Machine
+
+On a machine without internet access:
+
+```bash
+# Load the image from file
+gunzip -c comfyui-image.tar.gz | docker load
+
+# Run immediately without any downloads
+docker-compose up -d
+```
+
+### Verifying Offline Operation
+
+The container runs completely offline:
+- ✅ No downloads during runtime
+- ✅ All Python packages bundled
+- ✅ ComfyUI core works offline (as per original feature)
+- ⚠️ Optional API nodes (if enabled) may require internet
+
+### Building Without Internet (Advanced)
+
+If you need to rebuild on a machine without internet, you can use Docker's build cache:
+
+```bash
+# On machine WITH internet - build and export cache
+docker buildx create --use
+docker buildx build --cache-to type=local,dest=/tmp/cache .
+
+# Transfer /tmp/cache to offline machine
+
+# On machine WITHOUT internet - use cached layers
+docker buildx build --cache-from type=local,src=/tmp/cache .
 ```
 
 ## Troubleshooting

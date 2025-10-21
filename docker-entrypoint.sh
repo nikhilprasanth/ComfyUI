@@ -3,10 +3,16 @@ set -e
 
 # ComfyUI Docker Entrypoint Script
 # This script allows users to configure ComfyUI paths via environment variables
+# No internet connection is required for runtime operation
+
+# Ensure offline operation - prevent accidental downloads
+export HF_HUB_OFFLINE=1
+export TRANSFORMERS_OFFLINE=1
+export HF_DATASETS_OFFLINE=1
 
 echo "==================================="
 echo "ComfyUI Docker Container Starting"
-echo "==================================="
+echo "===================================" 
 
 # Handle extra model paths configuration
 if [ -n "$COMFYUI_MODELS_PATH" ] || [ -n "$COMFYUI_INPUT_PATH" ] || [ -n "$COMFYUI_OUTPUT_PATH" ]; then

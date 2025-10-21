@@ -196,6 +196,7 @@ There is a Docker implementation based on the portable version, perfect for easy
 - 🎯 **Configurable Paths**: Define input, output, and model locations
 - 🚀 **GPU Optimized**: Pre-configured for NVIDIA GPUs
 - 📦 **WSL2 Ready**: Perfect for Windows users
+- 🔒 **Offline Runtime**: Works completely offline after initial build
 
 ### Quick Start
 
@@ -218,7 +219,11 @@ docker-quickstart.bat
 # Access at http://localhost:8188
 ```
 
+**Note**: First build requires internet to download dependencies. After building, the image runs completely offline and can be saved/transferred to other machines without internet.
+
 For detailed Docker documentation, see [DOCKER_README.md](DOCKER_README.md).
+
+For offline usage and portability guide, see [DOCKER_OFFLINE_GUIDE.md](DOCKER_OFFLINE_GUIDE.md).
 
 ## [comfy-cli](https://docs.comfy.org/comfy-cli/getting-started)
 
