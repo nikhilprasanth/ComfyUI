@@ -1,0 +1,67 @@
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv
+
+# ComfyUI specific
+output/
+temp/
+*.log
+*.db
+
+# Git
+.git/
+.gitignore
+.gitattributes
+
+# CI/CD
+.github/
+.ci/
+
+# Documentation
+*.md
+!README.md
+
+# Docker
+Dockerfile
+docker-compose*.yml
+.dockerignore
+
+# Tests
+tests/
+tests-unit/
+pytest.ini
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS specific
+.DS_Store
+Thumbs.db
+
+# Large model files - users should mount these
+models/checkpoints/*.ckpt
+models/checkpoints/*.safetensors
+models/checkpoints/*.pt
+models/vae/*.ckpt
+models/vae/*.safetensors
+models/vae/*.pt
+models/loras/*.safetensors
+models/loras/*.pt
+
+# Build artifacts
+*.egg-info/
+dist/
+build/

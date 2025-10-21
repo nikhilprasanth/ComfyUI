@@ -187,6 +187,44 @@ If you have trouble extracting it, right click the file -> properties -> unblock
 See the [Config file](extra_model_paths.yaml.example) to set the search paths for models. In the standalone windows build you can find this file in the ComfyUI directory. Rename this file to extra_model_paths.yaml and edit it with your favorite text editor.
 
 
+## Docker (Recommended for Portability)
+
+There is a Docker implementation based on the portable version, perfect for easy deployment and moving between PCs, especially for Windows users with WSL2.
+
+### Features
+- 🐳 **Portable**: Ready-to-go image with CUDA 12.8
+- 🎯 **Configurable Paths**: Define input, output, and model locations
+- 🚀 **GPU Optimized**: Pre-configured for NVIDIA GPUs
+- 📦 **WSL2 Ready**: Perfect for Windows users
+- 🔒 **Offline Runtime**: Works completely offline after initial build
+
+### Quick Start
+
+```bash
+# Clone the repository
+git clone https://github.com/comfyanonymous/ComfyUI.git
+cd ComfyUI
+
+# Create directories
+mkdir -p models/checkpoints input output
+
+# Place your models in ./models/checkpoints/
+
+# Start ComfyUI (Linux/Mac/WSL2)
+./docker-quickstart.sh
+
+# Or on Windows
+docker-quickstart.bat
+
+# Access at http://localhost:8188
+```
+
+**Note**: First build requires internet to download dependencies. After building, the image runs completely offline and can be saved/transferred to other machines without internet.
+
+For detailed Docker documentation, see [DOCKER_README.md](DOCKER_README.md).
+
+For offline usage and portability guide, see [DOCKER_OFFLINE_GUIDE.md](DOCKER_OFFLINE_GUIDE.md).
+
 ## [comfy-cli](https://docs.comfy.org/comfy-cli/getting-started)
 
 You can install and start ComfyUI using comfy-cli:

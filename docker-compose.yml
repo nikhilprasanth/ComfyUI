@@ -1,0 +1,70 @@
+services:
+  comfyui:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: comfyui:latest
+    container_name: comfyui
+    restart: unless-stopped
+    
+    # GPU support
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    
+    ports:
+      - "8188:8188"
+    
+    environment:
+      # Optional: Configure custom paths
+      # - COMFYUI_MODELS_PATH=/data/models
+      # - COMFYUI_INPUT_PATH=/data/input
+      # - COMFYUI_OUTPUT_PATH=/data/output
+      
+      # Optional: Preview method (none, auto, latent2rgb, taesd)
+      # - COMFYUI_PREVIEW_METHOD=auto
+      
+      # Optional: VRAM mode (highvram, normalvram, lowvram, novram, cpu)
+      # - COMFYUI_VRAM_MODE=normalvram
+      
+      # Optional: Additional ComfyUI arguments
+      # - COMFYUI_EXTRA_ARGS=--fast
+      
+      # Optional: Port (default: 8188)
+      # - COMFYUI_PORT=8188
+      
+      # NVIDIA specific
+      - NVIDIA_VISIBLE_DEVICES=all
+      - NVIDIA_DRIVER_CAPABILITIES=compute,utility
+    
+    volumes:
+      # Mount models directory - put your models here
+      - ./models:/app/models
+      
+      # Mount input directory - put your input images here
+      - ./input:/app/input
+      
+      # Mount output directory - generated images will be saved here
+      - ./output:/app/output
+      
+      # Optional: Mount custom nodes directory
+      # - ./custom_nodes:/app/custom_nodes
+      
+      # Optional: Mount user directory for settings
+      # - ./user:/app/user
+      
+      # Optional: Use a separate data directory for all paths
+      # Uncomment the lines below and comment out the individual mounts above
+      # - /path/on/host/models:/data/models
+      # - /path/on/host/input:/data/input
+      # - /path/on/host/output:/data/output
+    
+    # Optional: Configure shared memory size for large models
+    shm_size: '8gb'
+
+# Alternative compose file for using external model paths
+# Uncomment and modify the volumes section above to use this approach
